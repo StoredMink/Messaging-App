@@ -1,6 +1,7 @@
 # DevOps Message System
 
 A simple DevOps practice project demonstrating Docker, Nginx, Redis, Python, and MySQL integration.
+WARNING: Due to its simplicity, the application lacks some sequerity, like Redis paasword. Please do audit sequerity before using in prod enviroment.
 
 ## Project Overview
 
