@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Sender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        #messageForm {
+            display: none;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        #status {
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DevOps Message System</h1>
+        <button id="showFormBtn">Enter a Message</button>
+        
+        <div id="messageForm">
+            <input type="text" id="messageInput" placeholder="Type your message here...">
+            <button id="sendBtn">Send</button>
+        </div>
+        
+        <div id="status"></div>
+    </div>
+
+    <script>
+        document.getElementById('showFormBtn').addEventListener('click', function() {
+            document.getElementById('messageForm').style.display = 'block';
+            this.style.display = 'none';
+        });
+
+        document.getElementById('sendBtn').addEventListener('click', function() {
+            const message = document.getElementById('messageInput').value.trim();
+            
+            if (!message) {
+                alert('Please enter a message');
+                return;
+            }
+            
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = 'Sending message...';
+            
+            // Send the message to our backend
+            fetch('/api/message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                statusDiv.textContent = 'Message sent successfully!';
+                document.getElementById('messageInput').value = '';
+                // Reset UI after 3 seconds
+                setTimeout(() => {
+                    document.getElementById('messageForm').style.display = 'none';
+                    document.getElementById('showFormBtn').style.display = 'block';
+                    statusDiv.textContent = '';
+                }, 3000);
+            })
+            .catch(error => {
+                statusDiv.textContent = 'Error sending message: ' + error.message;
+            });
+        });
+    </script>
+</body>
+</html>
