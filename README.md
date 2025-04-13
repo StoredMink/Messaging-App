@@ -1,6 +1,7 @@
-# DevOps Message Queue System
+# DevOps Message System
 
 A simple DevOps practice project demonstrating Docker, Nginx, Redis, Python, and MySQL integration.
+WARNING: Due to its simplicity, the application lacks some sequerity, like Redis paasword. Please do audit sequerity before using in prod enviroment.
 
 ## Project Overview
 
@@ -39,7 +40,6 @@ project/
 │   ├── nginx.conf
 │   └── html/
 │       ├── index.html
-│       └── admin.html (optional)
 ├── backend/
 │   ├── Dockerfile
 │   ├── app.py
@@ -180,19 +180,3 @@ docker-compose restart backend
 # SSH into a container
 docker-compose exec backend sh
 ```
-
-## Extending the Project
-
-Ideas for extending this project:
-
-1. Add user authentication
-2. Create a dashboard to view message statistics
-3. Implement message filtering and search
-4. Add message categories or tags
-5. Set up monitoring with Prometheus and Grafana
-6. Configure CI/CD with GitHub Actions or Jenkins
-7. Add TLS/SSL with Let's Encrypt
-
-## License
-
-This project is for educational purposes only.
