@@ -2,6 +2,7 @@
 
 A simple DevOps practice project demonstrating Docker, Nginx, Redis, Python, and MySQL integration.
 WARNING: Due to its simplicity, the application lacks some sequerity, like Redis paasword. Please do sequerity audit before using this project in prod enviroment.
+
 ![Examples of usage](Screenshot 2025-04-10 235202.png)
 
 ## Project Overview
